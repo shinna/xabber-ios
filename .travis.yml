@@ -1,4 +1,4 @@
 language: objective-c
 
-xcode_project: xabber.xcworkspace
+xcode_project: xabber.xcodeproj
 xcode_scheme: xabberTests
