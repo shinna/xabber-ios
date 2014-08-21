@@ -1,4 +1,6 @@
 language: objective-c
 
-xcode_project: xabber.xcodeproj
+xcode_workspace: xabber.xcworkspace
 xcode_scheme: xabberTests
+
+xcode_sdk: iphonesimulator7.0
