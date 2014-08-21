@@ -10,6 +10,7 @@
 		75DCE5E059A0113482DA39CC /* XBAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DCEB2BD63DFA9BB5FA1A87 /* XBAccountManager.m */; };
 		75DCE5E9B009952060DB1290 /* XBAuthTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DCED516A2BF3745537CB36 /* XBAuthTest.m */; };
 		75DCE79E43BD92C9AB570663 /* mogen.sh in Resources */ = {isa = PBXBuildFile; fileRef = 75DCE9235B36DF8083D25ECA /* mogen.sh */; };
+		75DCE9A2CACC2E1827D6CBE6 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 75DCE904070B7C93366CF1B9 /* .travis.yml */; };
 		75DCE9D4F122C8E3BB07125F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 75DCED47E6E3DC91302E4215 /* .gitignore */; };
 		75DCEE627A4AEA9076A55EE8 /* mogend.sh in Resources */ = {isa = PBXBuildFile; fileRef = 75DCE13BBDB715407F1B73AA /* mogend.sh */; };
 		A41DB9F119A2168A00B3AB93 /* xabber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A41DB9EF19A2168A00B3AB93 /* xabber.xcdatamodeld */; };
@@ -71,6 +72,7 @@
 
 /* Begin PBXFileReference section */
 		75DCE13BBDB715407F1B73AA /* mogend.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mogend.sh; sourceTree = "<group>"; };
+		75DCE904070B7C93366CF1B9 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = file.yml; path = .travis.yml; sourceTree = "<group>"; };
 		75DCE9235B36DF8083D25ECA /* mogen.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mogen.sh; sourceTree = "<group>"; };
 		75DCEB2BD63DFA9BB5FA1A87 /* XBAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBAccountManager.m; sourceTree = "<group>"; };
 		75DCEBA4AB61EAD736243C5F /* XBAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBAccountManager.h; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				8F8CDA0B349E4FB68FC4D371 /* Pods.xcconfig */,
 				75DCED47E6E3DC91302E4215 /* .gitignore */,
 				CC98CB24FF864D288EE32C38 /* Pods-xabberTests.xcconfig */,
+				75DCE904070B7C93366CF1B9 /* .travis.yml */,
 			);
 			sourceTree = "<group>";
 		};
@@ -362,6 +365,7 @@
 				75DCE9D4F122C8E3BB07125F /* .gitignore in Resources */,
 				75DCE79E43BD92C9AB570663 /* mogen.sh in Resources */,
 				75DCEE627A4AEA9076A55EE8 /* mogend.sh in Resources */,
+				75DCE9A2CACC2E1827D6CBE6 /* .travis.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
