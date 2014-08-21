@@ -2,5 +2,8 @@ language: objective-c
 
 xcode_workspace: xabber.xcworkspace
 xcode_scheme: xabberTests
-
 xcode_sdk: iphonesimulator7.0
+
+before_install:
+  - brew update
+  - brew install mogenerator
