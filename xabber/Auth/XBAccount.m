@@ -10,6 +10,10 @@
 
 static NSString *const XBKeychainServiceName = @"xabberService";
 
+@interface XBAccount(){
+}
+@end
+
 @implementation XBAccount
 
 - (instancetype)initWithAccountID:(NSString *)accountID {
@@ -17,6 +21,8 @@ static NSString *const XBKeychainServiceName = @"xabberService";
     if (self) {
         self.accountID = accountID;
         [self setDefaults];
+        _isNew = YES;
+        _isDeleted = NO;
     }
 
     return self;
@@ -30,6 +36,8 @@ static NSString *const XBKeychainServiceName = @"xabberService";
     self = [super init];
     if (self) {
         [self setDefaults];
+        _isNew = YES;
+        _isDeleted = NO;
     }
 
     return self;
@@ -44,6 +52,8 @@ static NSString *const XBKeychainServiceName = @"xabberService";
     if (self) {
         [self loadFromCoreDataAccount:account];
         [self loadPasswordWithAccountID:self.accountID];
+        _isNew = NO;
+        _isDeleted = NO;
     }
 
     return self;
@@ -56,11 +66,29 @@ static NSString *const XBKeychainServiceName = @"xabberService";
 #pragma mark Save
 
 - (BOOL)save {
-    return [self saveCoreData] && [self savePassword];
+    if(![self saveCoreData]){
+        return NO;
+    }
+
+    if(![self savePassword]){
+        return NO;
+    }
+
+    _isNew = NO;
+
+    return YES;
 }
 
 - (BOOL)saveCoreData {
     __block XBXMPPCoreDataAccount *account;
+
+    if (_isNew) {
+        account = [XBXMPPCoreDataAccount MR_findFirstByAttribute:@"accountID" withValue:self.accountID];
+
+        if (account) {
+            return NO;
+        }
+    }
 
     [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
         account = [XBXMPPCoreDataAccount MR_importFromObject:self.dumpToDictionary inContext:localContext];
@@ -71,6 +99,12 @@ static NSString *const XBKeychainServiceName = @"xabberService";
 
 - (BOOL)savePassword {
     if (!self.password) {
+        NSString *oldPassword = [SSKeychain passwordForService:XBKeychainServiceName account:self.accountID];
+
+        if (!oldPassword) {
+            return YES;
+        }
+
         return [SSKeychain deletePasswordForService:XBKeychainServiceName account:self.accountID];
     }
 
@@ -101,6 +135,40 @@ static NSString *const XBKeychainServiceName = @"xabberService";
     self.password = [SSKeychain passwordForService:XBKeychainServiceName account:accountID];
 
     return self.password != nil;
+}
+
+#pragma mark Delete
+
+- (BOOL)delete {
+    if (![self deleteCoreData]) {
+        return NO;
+    }
+
+    if (![self deletePassword]) {
+        return NO;
+    }
+
+    _isDeleted = YES;
+
+    return YES;
+}
+
+- (BOOL)deleteCoreData {
+    XBXMPPCoreDataAccount *account = [XBXMPPCoreDataAccount MR_findFirstByAttribute:@"accountID" withValue:self.accountID];
+
+    if (account) {
+        return [account MR_deleteEntity];
+    }
+
+    return NO;
+}
+
+- (BOOL)deletePassword {
+    if (self.password) {
+        return [SSKeychain deletePasswordForService:XBKeychainServiceName account:self.accountID];
+    }
+
+    return YES;
 }
 
 #pragma mark Private

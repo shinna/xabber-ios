@@ -24,6 +24,9 @@ typedef enum {
 @property (nonatomic, strong) NSString *host;
 @property (nonatomic, assign) int16_t port;
 
+@property (nonatomic, readonly) BOOL isNew;
+@property (nonatomic, readonly) BOOL isDeleted;
+
 - (instancetype)initWithAccountID:(NSString *)accountID;
 
 - (instancetype)initWithCoreDataAccount:(XBXMPPCoreDataAccount *)account;
@@ -35,6 +38,8 @@ typedef enum {
 + (instancetype)accountWithCoreDataAccount:(XBXMPPCoreDataAccount *)account;
 
 - (BOOL)save;
+
+- (BOOL)delete;
 
 #pragma mark Equality
 

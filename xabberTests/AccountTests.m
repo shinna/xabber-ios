@@ -38,6 +38,34 @@
     XCTAssertEqual([XBXMPPCoreDataAccount MR_findAll].count, 1u);
 }
 
+- (void)testAccountIsNew {
+    XBAccount *acc = [XBAccount accountWithAccountID:@"account"];
+
+    XCTAssertTrue(acc.isNew);
+}
+
+- (void)testCreatedEmptyAccountIsNew {
+    XBAccount *acc = [XBAccount account];
+
+    XCTAssertTrue(acc.isNew);
+}
+
+- (void)testAccountNotNewAfterSave {
+    XBAccount *acc = [XBAccount account];
+    [acc save];
+
+    XCTAssertFalse(acc.isNew);
+}
+
+- (void)testLoadedFromCoreDataAccountNotNew {
+    XBAccount *acc1 = [XBAccount accountWithAccountID:@"account"];
+    [acc1 save];
+
+    XBAccount *acc2 = [XBAccount accountWithCoreDataAccount:[XBXMPPCoreDataAccount MR_findFirstByAttribute:@"accountID" withValue:@"account"]];
+
+    XCTAssertFalse(acc2.isNew);
+}
+
 - (void)testNotCreatingDuplicates {
     XBAccount *acc = [XBAccount accountWithAccountID:@"account"];
 
@@ -53,6 +81,8 @@
     XCTAssertEqual(acc.autoLogin, YES);
     XCTAssertEqual(acc.port, 5222);
     XCTAssertEqual(acc.status, XBAccountStatusAvailable);
+    XCTAssertTrue(acc.isNew);
+    XCTAssertFalse(acc.isDeleted);
 }
 
 - (void)testRestoreFromCoreData {
@@ -65,6 +95,34 @@
     XBAccount *acc2 = [XBAccount accountWithCoreDataAccount:[XBXMPPCoreDataAccount MR_findFirstByAttribute:@"accountID" withValue:@"account"]];
 
     XCTAssertEqualObjects(acc1, acc2);
+}
+
+- (void)testCannotSaveIfAccountIDAlreadyUsed {
+    XBAccount *acc = [XBAccount accountWithAccountID:@"account"];
+
+    [acc save];
+
+    XBAccount *acc2 = [XBAccount accountWithAccountID:@"account"];
+
+    XCTAssertFalse([acc2 save]);
+}
+
+- (void)testDeleteAccount {
+    XBAccount *acc = [XBAccount accountWithAccountID:@"account"];
+
+    [acc save];
+
+    [acc delete];
+
+    XCTAssertTrue(acc.isDeleted);
+    XCTAssertEqual([XBXMPPCoreDataAccount MR_findAll].count, 0);
+}
+
+- (void)testDeleteNotSavedAccount {
+    XBAccount *acc = [XBAccount accountWithAccountID:@"account"];
+
+    XCTAssertFalse([acc delete]);
+    XCTAssertFalse(acc.isDeleted);
 }
 
 @end
