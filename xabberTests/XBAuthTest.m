@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "XBXMPPAccount.h"
+#import "XBXMPPCoreDataAccount.h"
 #import "XBAccountManager.h"
 #import "OCMock/OCMock.h"
 #import "SSKeychain.h"
@@ -74,7 +74,7 @@
 - (void)testAccountFind {
     [manager addAccount:@{@"accountID": @"accountName"}];
 
-    XBXMPPAccount *account = [manager findAccountByID:@"accountName"];
+    XBXMPPCoreDataAccount *account = [manager findAccountByID:@"accountName"];
 
     XCTAssertNotNil(account);
     XCTAssertEqualObjects(account.accountID, @"accountName");
@@ -90,7 +90,7 @@
 - (void)testSetPassword {
     [manager addAccount:@{@"accountID": @"accountName"}];
 
-    XBXMPPAccount *account = [manager findAccountByID:@"accountName"];
+    XBXMPPCoreDataAccount *account = [manager findAccountByID:@"accountName"];
 
     BOOL accountSetResult = [account setPassword:@"password"];
 
@@ -99,7 +99,7 @@
 }
 
 - (void)testSetPasswordWithEmptyAccountID {
-    XBXMPPAccount *account = [XBXMPPAccount MR_createEntity];
+    XBXMPPCoreDataAccount *account = [XBXMPPCoreDataAccount MR_createEntity];
 
     BOOL accountSetResult = [account setPassword:@"password"];
 
@@ -110,7 +110,7 @@
 - (void)testSetNilPassword {
     [manager addAccount:@{@"accountID": @"accountName"}];
 
-    XBXMPPAccount *account = [manager findAccountByID:@"accountName"];
+    XBXMPPCoreDataAccount *account = [manager findAccountByID:@"accountName"];
 
     BOOL accountSetResult = [account setPassword:nil];
 
@@ -121,7 +121,7 @@
 - (void)testAddAccountWithPassword {
     [manager addAccount:@{@"accountID": @"accountName", @"password": @"password"}];
 
-    XBXMPPAccount *account = [manager findAccountByID:@"accountName"];
+    XBXMPPCoreDataAccount *account = [manager findAccountByID:@"accountName"];
 
     XCTAssertEqualObjects(account.password, @"password");
 }
@@ -129,7 +129,7 @@
 - (void)testDeletePassword {
     [manager addAccount:@{@"accountID": @"accountName", @"password": @"password"}];
 
-    XBXMPPAccount *account = [manager findAccountByID:@"accountName"];
+    XBXMPPCoreDataAccount *account = [manager findAccountByID:@"accountName"];
 
     [account deletePassword];
 

@@ -1,15 +1,15 @@
-#import "XBXMPPAccount.h"
+#import "XBXMPPCoreDataAccount.h"
 #import "SSKeychain.h"
 
 static NSString *const XBKeychainServiceName = @"xabberService";
 
-@interface XBXMPPAccount () {
+@interface XBXMPPCoreDataAccount () {
     NSString *_password;
 }
 @end
 
 
-@implementation XBXMPPAccount
+@implementation XBXMPPCoreDataAccount
 
 - (NSString *)password {
     if (!_password) {

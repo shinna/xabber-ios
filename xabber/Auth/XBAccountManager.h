@@ -5,7 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class XBXMPPAccount;
+@class XBXMPPCoreDataAccount;
 
 
 @interface XBAccountManager : NSObject
@@ -18,5 +18,5 @@
 
 - (NSArray *)accounts;
 
-- (XBXMPPAccount *)findAccountByID:(NSString *)accountID;
+- (XBXMPPCoreDataAccount *)findAccountByID:(NSString *)accountID;
 @end
