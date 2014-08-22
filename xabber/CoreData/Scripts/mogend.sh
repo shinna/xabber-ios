@@ -13,6 +13,8 @@ HUMAN_DIR="${PROJECT_DIR}/xabber/CoreData/Entities"
 MACHINE_DIR="${PROJECT_DIR}/xabber/CoreData/EntitiesMachine"
 INCLUDE_H="${PROJECT_DIR}/xabber/CoreData/ModelIncludes.h"
 
+PATH=/usr/local/bin:$PATH
+
 curVer=`/usr/libexec/PlistBuddy "${INPUT_FILE_PATH}/.xccurrentversion" -c 'print _XCCurrentVersionName'`
 
 echo mogenerator --model \"${INPUT_FILE_PATH}/$curVer\" --machine-dir "$MACHINE_DIR/" --human-dir "$HUMAN_DIR/" --includeh "$INCLUDE_H" --template-var arc=true

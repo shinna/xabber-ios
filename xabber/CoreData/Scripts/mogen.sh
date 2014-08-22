@@ -13,6 +13,8 @@ HUMAN_DIR="${PROJECT_DIR}/xabber/CoreData/Entities"
 MACHINE_DIR="${PROJECT_DIR}/xabber/CoreData/EntitiesMachine"
 INCLUDE_H="${PROJECT_DIR}/xabber/CoreData/ModelIncludes.h"
 
+PATH=/usr/local/bin:$PATH
+
 echo mogenerator --model \"${INPUT_FILE_PATH}\" --machine-dir "$MACHINE_DIR/" --human-dir "$HUMAN_DIR/" --includeh "$INCLUDE_H" --template-var arc=true
 mogenerator --model \"${INPUT_FILE_PATH}\" --machine-dir "$MACHINE_DIR/" --human-dir "$HUMAN_DIR/" --includeh "$INCLUDE_H" --template-var arc=true
 
