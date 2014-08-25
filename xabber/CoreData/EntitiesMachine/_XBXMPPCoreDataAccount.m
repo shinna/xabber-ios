@@ -1,9 +1,9 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
-// Make changes to XBXMPPAccount.m instead.
+// Make changes to XBXMPPCoreDataAccount.m instead.
 
-#import "_XBXMPPAccount.h"
+#import "_XBXMPPCoreDataAccount.h"
 
-const struct XBXMPPAccountAttributes XBXMPPAccountAttributes = {
+const struct XBXMPPCoreDataAccountAttributes XBXMPPCoreDataAccountAttributes = {
 	.accountID = @"accountID",
 	.autoLogin = @"autoLogin",
 	.host = @"host",
@@ -11,33 +11,33 @@ const struct XBXMPPAccountAttributes XBXMPPAccountAttributes = {
 	.status = @"status",
 };
 
-const struct XBXMPPAccountRelationships XBXMPPAccountRelationships = {
+const struct XBXMPPCoreDataAccountRelationships XBXMPPCoreDataAccountRelationships = {
 };
 
-const struct XBXMPPAccountFetchedProperties XBXMPPAccountFetchedProperties = {
+const struct XBXMPPCoreDataAccountFetchedProperties XBXMPPCoreDataAccountFetchedProperties = {
 };
 
-@implementation XBXMPPAccountID
+@implementation XBXMPPCoreDataAccountID
 @end
 
-@implementation _XBXMPPAccount
+@implementation _XBXMPPCoreDataAccount
 
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription insertNewObjectForEntityForName:@"XBXMPPAccount" inManagedObjectContext:moc_];
+	return [NSEntityDescription insertNewObjectForEntityForName:@"XBXMPPCoreDataAccount" inManagedObjectContext:moc_];
 }
 
 + (NSString*)entityName {
-	return @"XBXMPPAccount";
+	return @"XBXMPPCoreDataAccount";
 }
 
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription entityForName:@"XBXMPPAccount" inManagedObjectContext:moc_];
+	return [NSEntityDescription entityForName:@"XBXMPPCoreDataAccount" inManagedObjectContext:moc_];
 }
 
-- (XBXMPPAccountID*)objectID {
-	return (XBXMPPAccountID*)[super objectID];
+- (XBXMPPCoreDataAccountID*)objectID {
+	return (XBXMPPCoreDataAccountID*)[super objectID];
 }
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {

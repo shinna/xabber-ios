@@ -7,10 +7,11 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "XBXMPPAccount.h"
+#import "XBXMPPCoreDataAccount.h"
 #import "XBAccountManager.h"
 #import "OCMock/OCMock.h"
 #import "SSKeychain.h"
+#import "XBAccount.h"
 
 @interface XBAuthTest : XCTestCase {
     XBAccountManager *manager;
@@ -30,118 +31,98 @@
 {
     [super setUp];
 
-    manager = [XBAccountManager sharedInstance];
     [MagicalRecord setupCoreDataStackWithInMemoryStore];
+    manager = [XBAccountManager sharedInstance];
 }
 
 - (void)tearDown
 {
-    [MagicalRecord cleanUp];
-
-    for (NSDictionary *account in [SSKeychain accountsForService:@"xabberService"]) {
-        [SSKeychain deletePasswordForService:@"xabberService" account:account[(__bridge id)kSecAttrAccount]];
+    for (XBAccount *account in manager.accounts) {
+        [manager deleteAccountWithID:account.accountID];
     }
+
+    [MagicalRecord cleanUp];
 
     [super tearDown];
 }
 
 - (void)testAccountAdd {
+    XBAccount *account = [XBAccount accountWithAccountID:@"accountName"];
+    [account save];
 
-    [manager addAccount:@{@"accountID": @"accountName"}];
+    [manager addAccount:account];
 
     XCTAssertEqual([manager accounts].count, 1);
 }
 
-- (void)testTryAddAccountWithInvalidData {
-    [manager addAccount:@{}];
+- (void)testTryAddNilAccount {
+    [manager addAccount:nil];
 
     XCTAssertEqual(manager.accounts.count, 0);
 }
 
-- (void)testAccountIDValidatorReturnError {
-    id errorHandlerObject = OCMProtocolMock(@protocol(ErrorHandlerProtocol));
-    OCMExpect([errorHandlerObject errorHandler:[OCMArg checkWithBlock:^BOOL(NSError *error) {
-        return [error.domain isEqualToString:NSCocoaErrorDomain] && error.code == NSValidationMissingMandatoryPropertyError;
-    }]]);
+- (void)testTryToAddNotSavedAccount {
+    XBAccount *account = [XBAccount accountWithAccountID:@"accountName"];
 
-    [MagicalRecord setErrorHandlerTarget:errorHandlerObject action:@selector(errorHandler:)];
+    [manager addAccount:account];
 
-    [manager addAccount:@{}];
-
-    OCMVerifyAll(errorHandlerObject);
+    XCTAssertEqual([manager accounts].count, 0);
 }
 
 - (void)testAccountFind {
-    [manager addAccount:@{@"accountID": @"accountName"}];
+    XBAccount *account = [XBAccount accountWithAccountID:@"accountName"];
+    [account save];
 
-    XBXMPPAccount *account = [manager findAccountByID:@"accountName"];
+    [manager addAccount:account];
 
-    XCTAssertNotNil(account);
-    XCTAssertEqualObjects(account.accountID, @"accountName");
+    XBAccount *foundAccount = [manager findAccountByID:@"accountName"];
+
+    XCTAssertEqualObjects(account, foundAccount);
 }
 
-- (void)testAccountRemove {
-    [manager addAccount:@{@"accountID": @"accountName"}];
+- (void)testTryToFindNotExistingAccount {
+    XCTAssertNil([manager findAccountByID:@"accountName"]);
+}
+
+- (void)testAccountDeleteByID {
+    XBAccount *account = [XBAccount accountWithAccountID:@"accountName"];
+    [account save];
+
+    [manager addAccount:account];
     [manager deleteAccountWithID:@"accountName"];
 
-    XCTAssertEqual([XBAccountManager sharedInstance].accounts.count, 0);
+    XCTAssertEqual(manager.accounts.count, 0);
 }
 
-- (void)testSetPassword {
-    [manager addAccount:@{@"accountID": @"accountName"}];
+- (void)testTryToDeleteAccountByNotExistingID {
+    XBAccount *account = [XBAccount accountWithAccountID:@"accountName"];
+    [account save];
 
-    XBXMPPAccount *account = [manager findAccountByID:@"accountName"];
+    [manager addAccount:account];
+    [manager deleteAccountWithID:@"account"];
 
-    BOOL accountSetResult = [account setPassword:@"password"];
-
-    XCTAssertTrue(accountSetResult);
-    XCTAssertEqualObjects(account.password, @"password");
+    XCTAssertEqual(manager.accounts.count, 1);
 }
 
-- (void)testSetPasswordWithEmptyAccountID {
-    XBXMPPAccount *account = [XBXMPPAccount MR_createEntity];
+- (void)testDeleteAccount {
+    XBAccount *account = [XBAccount accountWithAccountID:@"accountName"];
+    [account save];
 
-    BOOL accountSetResult = [account setPassword:@"password"];
+    [manager addAccount:account];
+    [manager deleteAccount:account];
 
-    XCTAssertFalse(accountSetResult);
-    XCTAssertNil(account.password);
+    XCTAssertEqual(manager.accounts.count, 0);
 }
 
-- (void)testSetNilPassword {
-    [manager addAccount:@{@"accountID": @"accountName"}];
+- (void)testDeleteNotExistingAccount {
+    XBAccount *account = [XBAccount accountWithAccountID:@"accountName"];
+    XBAccount *account2 = [XBAccount accountWithAccountID:@"accountName"];
+    [account save];
 
-    XBXMPPAccount *account = [manager findAccountByID:@"accountName"];
+    [manager addAccount:account];
+    [manager deleteAccount:account2];
 
-    BOOL accountSetResult = [account setPassword:nil];
-
-    XCTAssertFalse(accountSetResult);
-    XCTAssertNil(account.password);
-}
-
-- (void)testAddAccountWithPassword {
-    [manager addAccount:@{@"accountID": @"accountName", @"password": @"password"}];
-
-    XBXMPPAccount *account = [manager findAccountByID:@"accountName"];
-
-    XCTAssertEqualObjects(account.password, @"password");
-}
-
-- (void)testDeletePassword {
-    [manager addAccount:@{@"accountID": @"accountName", @"password": @"password"}];
-
-    XBXMPPAccount *account = [manager findAccountByID:@"accountName"];
-
-    [account deletePassword];
-
-    XCTAssertNil(account.password);
-}
-
-- (void)testDeletePasswordOnAccountDelete {
-    [manager addAccount:@{@"accountID": @"accountName", @"password": @"password"}];
-
-    [manager deleteAccountWithID:@"accountName"];
-
-    XCTAssertNil([SSKeychain passwordForService:@"xabberService" account:@"accountName"]);
+    XCTAssertEqual(manager.accounts.count, 1);
 }
 
 @end

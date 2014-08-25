@@ -1,1 +1,1 @@
-#import "XBXMPPAccount.h"
+#import "XBXMPPCoreDataAccount.h"

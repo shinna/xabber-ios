@@ -1,38 +1,38 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
-// Make changes to XBXMPPAccount.h instead.
+// Make changes to XBXMPPCoreDataAccount.h instead.
 
 #import <CoreData/CoreData.h>
 
 
-extern const struct XBXMPPAccountAttributes {
+extern const struct XBXMPPCoreDataAccountAttributes {
 	__unsafe_unretained NSString *accountID;
 	__unsafe_unretained NSString *autoLogin;
 	__unsafe_unretained NSString *host;
 	__unsafe_unretained NSString *port;
 	__unsafe_unretained NSString *status;
-} XBXMPPAccountAttributes;
+} XBXMPPCoreDataAccountAttributes;
 
-extern const struct XBXMPPAccountRelationships {
-} XBXMPPAccountRelationships;
+extern const struct XBXMPPCoreDataAccountRelationships {
+} XBXMPPCoreDataAccountRelationships;
 
-extern const struct XBXMPPAccountFetchedProperties {
-} XBXMPPAccountFetchedProperties;
-
-
+extern const struct XBXMPPCoreDataAccountFetchedProperties {
+} XBXMPPCoreDataAccountFetchedProperties;
 
 
 
 
 
 
-@interface XBXMPPAccountID : NSManagedObjectID {}
+
+
+@interface XBXMPPCoreDataAccountID : NSManagedObjectID {}
 @end
 
-@interface _XBXMPPAccount : NSManagedObject {}
+@interface _XBXMPPCoreDataAccount : NSManagedObject {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-- (XBXMPPAccountID*)objectID;
+- (XBXMPPCoreDataAccountID*)objectID;
 
 
 
@@ -103,11 +103,11 @@ extern const struct XBXMPPAccountFetchedProperties {
 
 @end
 
-@interface _XBXMPPAccount (CoreDataGeneratedAccessors)
+@interface _XBXMPPCoreDataAccount (CoreDataGeneratedAccessors)
 
 @end
 
-@interface _XBXMPPAccount (CoreDataGeneratedPrimitiveAccessors)
+@interface _XBXMPPCoreDataAccount (CoreDataGeneratedPrimitiveAccessors)
 
 
 - (NSString*)primitiveAccountID;

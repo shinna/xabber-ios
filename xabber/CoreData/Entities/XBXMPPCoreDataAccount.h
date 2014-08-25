@@ -1,6 +1,6 @@
-#import "_XBXMPPAccount.h"
+#import "_XBXMPPCoreDataAccount.h"
 
-@interface XBXMPPAccount : _XBXMPPAccount {}
+@interface XBXMPPCoreDataAccount : _XBXMPPCoreDataAccount {}
 
 
 - (NSString *)password;

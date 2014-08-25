@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="XBXMPPAccount" representedClassName="XBXMPPAccount" syncable="YES">
+    <entity name="XBXMPPCoreDataAccount" representedClassName="XBXMPPCoreDataAccount" syncable="YES">
         <attribute name="accountID" attributeType="String" indexed="YES" syncable="YES">
             <userInfo>
                 <entry key="mappedKeyName" value="accountID"/>
@@ -15,6 +15,6 @@
         </userInfo>
     </entity>
     <elements>
-        <element name="XBXMPPAccount" positionX="-45" positionY="0" width="128" height="120"/>
+        <element name="XBXMPPCoreDataAccount" positionX="-45" positionY="0" width="128" height="30"/>
     </elements>
 </model>
