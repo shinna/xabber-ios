@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <SSKeychain/SSKeychain.h>
 #import "XBAccount.h"
 #import "XBXMPPCoreDataAccount.h"
 
@@ -78,7 +79,7 @@
 - (void)testDefaults {
     XBAccount *acc = [XBAccount accountWithAccountID:@"account"];
 
-    XCTAssertEqual(acc.autoLogin, YES);
+    XCTAssertTrue(acc.autoLogin);
     XCTAssertEqual(acc.port, 5222);
     XCTAssertEqual(acc.status, XBAccountStatusAvailable);
     XCTAssertTrue(acc.isNew);
@@ -116,6 +117,7 @@
 
     XCTAssertTrue(acc.isDeleted);
     XCTAssertEqual([XBXMPPCoreDataAccount MR_findAll].count, 0);
+    XCTAssertNil([SSKeychain passwordForService:@"xabberService" account:@"account"]);
 }
 
 - (void)testDeleteNotSavedAccount {
@@ -123,6 +125,15 @@
 
     XCTAssertFalse([acc delete]);
     XCTAssertFalse(acc.isDeleted);
+}
+
+- (void)testCompareAccountsWithEqualData {
+    XBAccount *acc1 = [XBAccount accountWithAccountID:@"account"];
+    XBAccount *acc2 = [XBAccount accountWithAccountID:@"account"];
+
+    [acc1 save];
+
+    XCTAssertNotEqualObjects(acc1, acc2);
 }
 
 @end

@@ -231,6 +231,12 @@ static NSString *const XBKeychainServiceName = @"xabberService";
         return NO;
     if (self.port != account.port)
         return NO;
+    if (self.isNew != account.isNew) {
+        return NO;
+    }
+    if (self.isDeleted != account.isDeleted) {
+        return NO;
+    }
     return YES;
 }
 

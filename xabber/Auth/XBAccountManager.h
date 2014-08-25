@@ -6,17 +6,20 @@
 #import <Foundation/Foundation.h>
 
 @class XBXMPPCoreDataAccount;
+@class XBAccount;
 
 
 @interface XBAccountManager : NSObject
 
 + (XBAccountManager *)sharedInstance;
 
-- (void)addAccount:(NSDictionary *)data;
+- (void)addAccount:(XBAccount *)account;
 
 - (void)deleteAccountWithID:(NSString *)accountID;
 
+- (void)deleteAccount:(XBAccount *)account;
+
 - (NSArray *)accounts;
 
-- (XBXMPPCoreDataAccount *)findAccountByID:(NSString *)accountID;
+- (XBAccount *)findAccountByID:(NSString *)accountID;
 @end

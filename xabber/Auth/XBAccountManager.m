@@ -6,9 +6,24 @@
 #import "XBAccountManager.h"
 #import "XBXMPPCoreDataAccount.h"
 #import "XBXMPPCoreDataAccount.h"
+#import "XBAccount.h"
 
+@interface XBAccountManager() {
+    NSMutableArray *_accounts;
+}
+@end
 
 @implementation XBAccountManager
+- (id)init {
+    self = [super init];
+    if (self) {
+        _accounts = [NSMutableArray array];
+        [self loadCachedAccounts];
+    }
+
+    return self;
+}
+
 
 + (XBAccountManager *)sharedInstance {
     static XBAccountManager *sharedManager = nil;
@@ -21,24 +36,45 @@
     return sharedManager;
 }
 
-- (void)addAccount:(NSDictionary *)data {
-    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-        [XBXMPPCoreDataAccount MR_importFromObject:data inContext:localContext];
-    }];
+- (void)addAccount:(XBAccount *)account {
+    if (account && !account.isNew) {
+        [_accounts addObject:account];
+    }
 }
 
 - (void)deleteAccountWithID:(NSString *)accountID {
-    XBXMPPCoreDataAccount *account = [self findAccountByID:accountID];
-    [account deletePassword];
-    [account MR_deleteEntity];
+    XBAccount *account = [self findAccountByID:accountID];
+
+    [account delete];
+
+    [_accounts removeObject:account];
+}
+
+- (void)deleteAccount:(XBAccount *)account {
+    if ([_accounts containsObject:account]) {
+        [account delete];
+        [_accounts removeObject:account];
+    }
 }
 
 - (NSArray *)accounts {
-    return [XBXMPPCoreDataAccount MR_findAll];
+    return _accounts;
 }
 
-- (XBXMPPCoreDataAccount *)findAccountByID:(NSString *)accountID {
-    return [XBXMPPCoreDataAccount MR_findFirstByAttribute:@"accountID" withValue:accountID];
+- (XBAccount *)findAccountByID:(NSString *)accountID {
+    return [[_accounts filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(XBAccount *account, NSDictionary *bindings){
+        return [account.accountID isEqualToString:accountID];
+    }]] firstObject];
+}
+
+#pragma mark Private
+
+- (void)loadCachedAccounts {
+    NSArray *coreDataAccounts = [XBXMPPCoreDataAccount MR_findAll];
+
+    [coreDataAccounts enumerateObjectsUsingBlock:^(XBXMPPCoreDataAccount *coreDataAccount, NSUInteger idx, BOOL *stop){
+        [self addAccount:[XBAccount accountWithCoreDataAccount:coreDataAccount]];
+    }];
 }
 
 @end
