@@ -11,6 +11,7 @@
 		75DCE5E059A0113482DA39CC /* XBAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DCEB2BD63DFA9BB5FA1A87 /* XBAccountManager.m */; };
 		75DCE5E9B009952060DB1290 /* XBAuthTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DCED516A2BF3745537CB36 /* XBAuthTest.m */; };
 		75DCE79E43BD92C9AB570663 /* mogen.sh in Resources */ = {isa = PBXBuildFile; fileRef = 75DCE9235B36DF8083D25ECA /* mogen.sh */; };
+		75DCE8D8DF418719894E2084 /* AccountConnectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DCECC77ED2B754ED2DF249 /* AccountConnectorTests.m */; };
 		75DCE93BD1E1D88C84714D60 /* XBAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE2E5958345301F5FB5B6 /* XBAccount.m */; };
 		75DCE9A2CACC2E1827D6CBE6 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 75DCE904070B7C93366CF1B9 /* .travis.yml */; };
 		75DCE9D4F122C8E3BB07125F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 75DCED47E6E3DC91302E4215 /* .gitignore */; };
@@ -77,8 +78,10 @@
 		75DCE2E5958345301F5FB5B6 /* XBAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBAccount.m; sourceTree = "<group>"; };
 		75DCE904070B7C93366CF1B9 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = file.yml; path = .travis.yml; sourceTree = "<group>"; };
 		75DCE9235B36DF8083D25ECA /* mogen.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mogen.sh; sourceTree = "<group>"; };
+		75DCEA9DE81E1325F821F7FB /* XBConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBConnector.h; sourceTree = "<group>"; };
 		75DCEB2BD63DFA9BB5FA1A87 /* XBAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBAccountManager.m; sourceTree = "<group>"; };
 		75DCEBA4AB61EAD736243C5F /* XBAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBAccountManager.h; sourceTree = "<group>"; };
+		75DCECC77ED2B754ED2DF249 /* AccountConnectorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountConnectorTests.m; sourceTree = "<group>"; };
 		75DCED47E6E3DC91302E4215 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
 		75DCED516A2BF3745537CB36 /* XBAuthTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBAuthTest.m; sourceTree = "<group>"; };
 		75DCED66D62ECECB1000DBB5 /* XBAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBAccount.h; sourceTree = "<group>"; };
@@ -177,6 +180,14 @@
 			path = Scripts;
 			sourceTree = "<group>";
 		};
+		75DCEC5FA353F5424C46CC00 /* Connector */ = {
+			isa = PBXGroup;
+			children = (
+				75DCEA9DE81E1325F821F7FB /* XBConnector.h */,
+			);
+			path = Connector;
+			sourceTree = "<group>";
+		};
 		75DCED989299E47B17AEB78D /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +260,7 @@
 				A421DBDC199E02D000F857E2 /* Supporting Files */,
 				75DCED989299E47B17AEB78D /* Auth */,
 				75DCE52C7223F0D399B20C35 /* CoreData */,
+				75DCEC5FA353F5424C46CC00 /* Connector */,
 			);
 			path = xabber;
 			sourceTree = "<group>";
@@ -270,6 +282,7 @@
 				A421DC05199E02D000F857E2 /* Supporting Files */,
 				75DCED516A2BF3745537CB36 /* XBAuthTest.m */,
 				75DCEEA7F17D23658AF445DB /* AccountTests.m */,
+				75DCECC77ED2B754ED2DF249 /* AccountConnectorTests.m */,
 			);
 			path = xabberTests;
 			sourceTree = "<group>";
@@ -473,6 +486,7 @@
 			files = (
 				75DCE5E9B009952060DB1290 /* XBAuthTest.m in Sources */,
 				75DCE4B321E2B9D44627B51D /* AccountTests.m in Sources */,
+				75DCE8D8DF418719894E2084 /* AccountConnectorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,61 +6,50 @@
 #import <SSKeychain/SSKeychain.h>
 #import "XBAccount.h"
 #import "XBXMPPCoreDataAccount.h"
+#import "XMPPStream.h"
+#import "XMPPRoster.h"
+#import "XBXMPPConnector.h"
 
 
 static NSString *const XBKeychainServiceName = @"xabberService";
 
-@interface XBAccount(){
+@interface XBAccount() {
+    id<XBConnector> _connector;
 }
 @end
 
 @implementation XBAccount
 
-- (instancetype)initWithAccountID:(NSString *)accountID {
+- (instancetype)initWithConnector:(id <XBConnector>)connector coreDataAccount:(XBXMPPCoreDataAccount *)account {
     self = [super init];
     if (self) {
-        self.accountID = accountID;
-        [self setDefaults];
-        _isNew = YES;
+        _connector = connector;
+        _connector.account = self;
+        if (account) {
+            [self loadFromCoreDataAccount:account];
+            [self loadPasswordWithAccountID:self.accountID];
+            _isNew = NO;
+        }
+        else {
+            [self setDefaults];
+            _isNew = YES;
+        }
         _isDeleted = NO;
     }
 
     return self;
 }
 
-+ (instancetype)accountWithAccountID:(NSString *)accountID {
-    return [[self alloc] initWithAccountID:accountID];
++ (instancetype)accountWithConnector:(id <XBConnector>)connector coreDataAccount:(XBXMPPCoreDataAccount *)account {
+    return [[self alloc] initWithConnector:connector coreDataAccount:account];
 }
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        [self setDefaults];
-        _isNew = YES;
-        _isDeleted = NO;
-    }
-
-    return self;
+- (instancetype)initWithConnector:(id <XBConnector>)connector {
+    return [self initWithConnector:connector coreDataAccount:nil];
 }
 
-+ (instancetype)account {
-    return [[self alloc] init];
-}
-
-- (instancetype)initWithCoreDataAccount:(XBXMPPCoreDataAccount *)account {
-    self = [super init];
-    if (self) {
-        [self loadFromCoreDataAccount:account];
-        [self loadPasswordWithAccountID:self.accountID];
-        _isNew = NO;
-        _isDeleted = NO;
-    }
-
-    return self;
-}
-
-+ (instancetype)accountWithCoreDataAccount:(XBXMPPCoreDataAccount *)account {
-    return [[self alloc] initWithCoreDataAccount:account];
++ (instancetype)accountWithConnector:(id <XBConnector>)connector {
+    return [[self alloc] initWithConnector:connector];
 }
 
 #pragma mark Save
@@ -171,6 +160,53 @@ static NSString *const XBKeychainServiceName = @"xabberService";
     return YES;
 }
 
+#pragma mark Connection
+
+- (void)login {
+    if ([self.delegate respondsToSelector:@selector(accountWillLogin:)]) {
+        [self.delegate accountWillLogin:self];
+    }
+
+    [_connector loginWithCompletion:^(NSError *error) {
+        if (error) {
+            if ([self.delegate respondsToSelector:@selector(account:didNotLoginWithError:)]) {
+                [self.delegate account:self didNotLoginWithError:error];
+            }
+
+            return;
+        }
+
+        if ([self.delegate respondsToSelector:@selector(accountDidLoginSuccessfully:)]) {
+            [self.delegate accountDidLoginSuccessfully:self];
+        }
+    }];
+}
+
+- (void)logout {
+    if ([self.delegate respondsToSelector:@selector(accountWillLogout:)]) {
+        [self.delegate accountWillLogout:self];
+    }
+
+    if (!_connector.isLoggedIn) {
+        [self.delegate account:self
+         didNotLogoutWithError:[NSError errorWithDomain:@"xabberErrorDomain" code:1 userInfo:@{NSLocalizedDescriptionKey: @"Account already logged out"}]];
+    }
+
+    [_connector logoutWithCompletion:^(NSError *error) {
+        if (error) {
+            if ([self.delegate respondsToSelector:@selector(account:didNotLogoutWithError:)]) {
+                [self.delegate account:self didNotLogoutWithError:error];
+            }
+
+            return;
+        }
+
+        if ([self.delegate respondsToSelector:@selector(accountDidLogoutSuccessfully:)]) {
+            [self.delegate accountDidLogoutSuccessfully:self];
+        }
+    }];
+}
+
 #pragma mark Private
 
 - (void)setDefaults {
@@ -205,6 +241,8 @@ static NSString *const XBKeychainServiceName = @"xabberService";
     return data;
 }
 
+#pragma mark Equality
+
 - (BOOL)isEqual:(id)other {
     if (other == self)
         return YES;
@@ -231,10 +269,11 @@ static NSString *const XBKeychainServiceName = @"xabberService";
         return NO;
     if (self.port != account.port)
         return NO;
-    if (self.isNew != account.isNew) {
+    if (self.isNew != account.isNew)
         return NO;
-    }
-    if (self.isDeleted != account.isDeleted) {
+    if (self.isDeleted != account.isDeleted)
+        return NO;
+    if (![_connector isEqual:account->_connector]) {
         return NO;
     }
     return YES;
@@ -248,6 +287,20 @@ static NSString *const XBKeychainServiceName = @"xabberService";
     hash = hash * 31u + [self.host hash];
     hash = hash * 31u + self.port;
     return hash;
+}
+
+#pragma mark XBConnector delegate
+
+- (void)connectionWillStarted:(XBXMPPConnector *)connector1 {
+
+}
+
+- (void)connectionDidFinishedSuccessfully:(XBXMPPConnector *)connector1 {
+
+}
+
+- (void)connection:(XBXMPPConnector *)connector1 didFinishedWithError:(NSError *)error {
+
 }
 
 

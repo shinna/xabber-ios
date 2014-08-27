@@ -19,12 +19,6 @@
 
 @end
 
-@protocol ErrorHandlerProtocol
-
-- (void)errorHandler:(NSError *)error;
-
-@end
-
 @implementation XBAuthTest
 
 - (void)setUp
@@ -47,7 +41,8 @@
 }
 
 - (void)testAccountAdd {
-    XBAccount *account = [XBAccount accountWithAccountID:@"accountName"];
+    XBAccount *account = [XBAccount accountWithConnector:nil];
+    account.accountID = @"accountName";
     [account save];
 
     [manager addAccount:account];
@@ -62,7 +57,8 @@
 }
 
 - (void)testTryToAddNotSavedAccount {
-    XBAccount *account = [XBAccount accountWithAccountID:@"accountName"];
+    XBAccount *account = [XBAccount accountWithConnector:nil];
+    account.accountID = @"accountName";
 
     [manager addAccount:account];
 
@@ -70,7 +66,8 @@
 }
 
 - (void)testAccountFind {
-    XBAccount *account = [XBAccount accountWithAccountID:@"accountName"];
+    XBAccount *account = [XBAccount accountWithConnector:nil];
+    account.accountID = @"accountName";
     [account save];
 
     [manager addAccount:account];
@@ -85,7 +82,8 @@
 }
 
 - (void)testAccountDeleteByID {
-    XBAccount *account = [XBAccount accountWithAccountID:@"accountName"];
+    XBAccount *account = [XBAccount accountWithConnector:nil];
+    account.accountID = @"accountName";
     [account save];
 
     [manager addAccount:account];
@@ -95,7 +93,8 @@
 }
 
 - (void)testTryToDeleteAccountByNotExistingID {
-    XBAccount *account = [XBAccount accountWithAccountID:@"accountName"];
+    XBAccount *account = [XBAccount accountWithConnector:nil];
+    account.accountID = @"accountName";
     [account save];
 
     [manager addAccount:account];
@@ -105,7 +104,8 @@
 }
 
 - (void)testDeleteAccount {
-    XBAccount *account = [XBAccount accountWithAccountID:@"accountName"];
+    XBAccount *account = [XBAccount accountWithConnector:nil];
+    account.accountID = @"accountName";
     [account save];
 
     [manager addAccount:account];
@@ -115,8 +115,10 @@
 }
 
 - (void)testDeleteNotExistingAccount {
-    XBAccount *account = [XBAccount accountWithAccountID:@"accountName"];
-    XBAccount *account2 = [XBAccount accountWithAccountID:@"accountName"];
+    XBAccount *account = [XBAccount accountWithConnector:nil];
+    account.accountID = @"accountName";
+    XBAccount *account2 = [XBAccount accountWithConnector:nil];
+    account2.accountID = @"accountName";
     [account save];
 
     [manager addAccount:account];
