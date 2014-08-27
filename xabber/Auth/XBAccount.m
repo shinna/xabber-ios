@@ -207,6 +207,11 @@ static NSString *const XBKeychainServiceName = @"xabberService";
     }];
 }
 
+- (BOOL)isLoggedIn {
+    return _connector.isLoggedIn;
+}
+
+
 #pragma mark Private
 
 - (void)setDefaults {

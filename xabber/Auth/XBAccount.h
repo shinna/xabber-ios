@@ -47,6 +47,8 @@ typedef enum {
 
 - (void)logout;
 
+- (BOOL)isLoggedIn;
+
 #pragma mark Equality
 
 - (BOOL)isEqual:(id)other;

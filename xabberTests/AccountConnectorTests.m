@@ -42,6 +42,14 @@
     OCMVerifyAll(mockConnector);
 }
 
+- (void)testIsLoggedIn {
+    XBAccount *account = [XBAccount accountWithConnector:mockConnector];
+
+    OCMStub([mockConnector isLoggedIn]).andReturn(YES);
+
+    XCTAssertTrue(account.isLoggedIn);
+}
+
 - (void)testWillLoginDelegate {
     XBAccount *account = [XBAccount accountWithConnector:mockConnector];
     account.delegate = mockDelegate;
