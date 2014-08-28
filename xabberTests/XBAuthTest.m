@@ -47,13 +47,13 @@
 
     [manager addAccount:account];
 
-    XCTAssertEqual([manager accounts].count, 1);
+    XCTAssertEqual([manager accounts].count, 1u);
 }
 
 - (void)testTryAddNilAccount {
     [manager addAccount:nil];
 
-    XCTAssertEqual(manager.accounts.count, 0);
+    XCTAssertEqual(manager.accounts.count, 0u);
 }
 
 - (void)testTryToAddNotSavedAccount {
@@ -62,7 +62,7 @@
 
     [manager addAccount:account];
 
-    XCTAssertEqual([manager accounts].count, 0);
+    XCTAssertEqual([manager accounts].count, 0u);
 }
 
 - (void)testAccountFind {
@@ -89,7 +89,7 @@
     [manager addAccount:account];
     [manager deleteAccountWithID:@"accountName"];
 
-    XCTAssertEqual(manager.accounts.count, 0);
+    XCTAssertEqual(manager.accounts.count, 0u);
 }
 
 - (void)testTryToDeleteAccountByNotExistingID {
@@ -100,7 +100,7 @@
     [manager addAccount:account];
     [manager deleteAccountWithID:@"account"];
 
-    XCTAssertEqual(manager.accounts.count, 1);
+    XCTAssertEqual(manager.accounts.count, 1u);
 }
 
 - (void)testDeleteAccount {
@@ -111,7 +111,7 @@
     [manager addAccount:account];
     [manager deleteAccount:account];
 
-    XCTAssertEqual(manager.accounts.count, 0);
+    XCTAssertEqual(manager.accounts.count, 0u);
 }
 
 - (void)testDeleteNotExistingAccount {
@@ -124,7 +124,7 @@
     [manager addAccount:account];
     [manager deleteAccount:account2];
 
-    XCTAssertEqual(manager.accounts.count, 1);
+    XCTAssertEqual(manager.accounts.count, 1u);
 }
 
 @end

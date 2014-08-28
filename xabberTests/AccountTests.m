@@ -85,7 +85,7 @@
     acc.accountID = @"account";
 
     XCTAssertTrue(acc.autoLogin);
-    XCTAssertEqual(acc.port, 5222);
+    XCTAssertEqual(acc.port, 5222u);
     XCTAssertEqual(acc.status, XBAccountStatusAvailable);
     XCTAssertTrue(acc.isNew);
     XCTAssertFalse(acc.isDeleted);
@@ -125,7 +125,7 @@
     [acc delete];
 
     XCTAssertTrue(acc.isDeleted);
-    XCTAssertEqual([XBXMPPCoreDataAccount MR_findAll].count, 0);
+    XCTAssertEqual([XBXMPPCoreDataAccount MR_findAll].count, 0u);
     XCTAssertNil([SSKeychain passwordForService:@"xabberService" account:@"account"]);
 }
 
