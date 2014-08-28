@@ -4,6 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XBAccount.h"
 
 @class XBAccount;
 
@@ -16,5 +17,7 @@
 - (void)loginWithCompletion:(void (^)(NSError *error))completionHandler;
 
 - (void)logoutWithCompletion:(void(^)(NSError *error))completionHandler;
+
+- (void)setNewStatus:(XBAccountStatus)status;
 
 @end
