@@ -4,10 +4,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "XBXMPPConnector.h"
 
 @class XBXMPPCoreDataAccount;
 @protocol XBAccountDelegate;
+@protocol XBConnector;
+
 
 typedef enum {
     XBAccountStatusAvailable,

@@ -6,9 +6,7 @@
 #import <SSKeychain/SSKeychain.h>
 #import "XBAccount.h"
 #import "XBXMPPCoreDataAccount.h"
-#import "XMPPStream.h"
-#import "XMPPRoster.h"
-#import "XBXMPPConnector.h"
+#import "XBConnector.h"
 
 
 static NSString *const XBKeychainServiceName = @"xabberService";
@@ -291,20 +289,6 @@ static NSString *const XBKeychainServiceName = @"xabberService";
     hash = hash * 31u + [self.host hash];
     hash = hash * 31u + self.port;
     return hash;
-}
-
-#pragma mark XBConnector delegate
-
-- (void)connectionWillStarted:(XBXMPPConnector *)connector1 {
-
-}
-
-- (void)connectionDidFinishedSuccessfully:(XBXMPPConnector *)connector1 {
-
-}
-
-- (void)connection:(XBXMPPConnector *)connector1 didFinishedWithError:(NSError *)error {
-
 }
 
 
