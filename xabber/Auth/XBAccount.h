@@ -6,6 +6,9 @@
 #import <Foundation/Foundation.h>
 
 @class XBXMPPCoreDataAccount;
+@protocol XBAccountDelegate;
+@protocol XBConnector;
+
 
 typedef enum {
     XBAccountStatusAvailable,
@@ -27,19 +30,25 @@ typedef enum {
 @property (nonatomic, readonly) BOOL isNew;
 @property (nonatomic, readonly) BOOL isDeleted;
 
-- (instancetype)initWithAccountID:(NSString *)accountID;
+@property (nonatomic, strong) id<XBAccountDelegate> delegate;
 
-- (instancetype)initWithCoreDataAccount:(XBXMPPCoreDataAccount *)account;
+- (instancetype)initWithConnector:(id <XBConnector>)connector coreDataAccount:(XBXMPPCoreDataAccount *)account;
 
-+ (instancetype)accountWithAccountID:(NSString *)accountID;
+- (instancetype)initWithConnector:(id <XBConnector>)connector;
 
-+ (instancetype)account;
++ (instancetype)accountWithConnector:(id <XBConnector>)connector;
 
-+ (instancetype)accountWithCoreDataAccount:(XBXMPPCoreDataAccount *)account;
++ (instancetype)accountWithConnector:(id <XBConnector>)connector coreDataAccount:(XBXMPPCoreDataAccount *)account;
 
 - (BOOL)save;
 
 - (BOOL)delete;
+
+- (void)login;
+
+- (void)logout;
+
+- (BOOL)isLoggedIn;
 
 #pragma mark Equality
 
@@ -48,5 +57,22 @@ typedef enum {
 - (BOOL)isEqualToAccount:(XBAccount *)account;
 
 - (NSUInteger)hash;
+
+@end
+
+
+@protocol XBAccountDelegate <NSObject>
+
+- (void)accountWillLogin:(XBAccount *)account;
+
+- (void)accountDidLoginSuccessfully:(XBAccount *)account;
+
+- (void)account:(XBAccount *)account didNotLoginWithError:(NSError *)error;
+
+- (void)accountWillLogout:(XBAccount *)account;
+
+- (void)accountDidLogoutSuccessfully:(XBAccount *)account;
+
+- (void)account:(XBAccount *)account didNotLogoutWithError:(NSError *)error;
 
 @end

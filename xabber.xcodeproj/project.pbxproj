@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75DCE48C14BBBBDA5642E52F /* XBXMPPConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE4A385E2C649E16EA677 /* XBXMPPConnector.m */; };
 		75DCE4B321E2B9D44627B51D /* AccountTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DCEEA7F17D23658AF445DB /* AccountTests.m */; };
 		75DCE5E059A0113482DA39CC /* XBAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DCEB2BD63DFA9BB5FA1A87 /* XBAccountManager.m */; };
 		75DCE5E9B009952060DB1290 /* XBAuthTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DCED516A2BF3745537CB36 /* XBAuthTest.m */; };
 		75DCE79E43BD92C9AB570663 /* mogen.sh in Resources */ = {isa = PBXBuildFile; fileRef = 75DCE9235B36DF8083D25ECA /* mogen.sh */; };
+		75DCE8D8DF418719894E2084 /* AccountConnectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DCECC77ED2B754ED2DF249 /* AccountConnectorTests.m */; };
 		75DCE93BD1E1D88C84714D60 /* XBAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE2E5958345301F5FB5B6 /* XBAccount.m */; };
 		75DCE9A2CACC2E1827D6CBE6 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 75DCE904070B7C93366CF1B9 /* .travis.yml */; };
 		75DCE9D4F122C8E3BB07125F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 75DCED47E6E3DC91302E4215 /* .gitignore */; };
+		75DCEB83DF5C824D7CE5B3A7 /* XMPPConnectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE73E0BE2D2A0FA4CD645 /* XMPPConnectorTests.m */; };
 		75DCEE627A4AEA9076A55EE8 /* mogend.sh in Resources */ = {isa = PBXBuildFile; fileRef = 75DCE13BBDB715407F1B73AA /* mogend.sh */; };
 		A41DB9F119A2168A00B3AB93 /* xabber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A41DB9EF19A2168A00B3AB93 /* xabber.xcdatamodeld */; };
 		A41DB9F719A218F500B3AB93 /* XBXMPPCoreDataAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = A41DB9F419A218F500B3AB93 /* XBXMPPCoreDataAccount.m */; };
@@ -75,10 +78,17 @@
 /* Begin PBXFileReference section */
 		75DCE13BBDB715407F1B73AA /* mogend.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mogend.sh; sourceTree = "<group>"; };
 		75DCE2E5958345301F5FB5B6 /* XBAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBAccount.m; sourceTree = "<group>"; };
+		75DCE48EA075773D65EA2DA2 /* XBXMPPConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBXMPPConnector.h; sourceTree = "<group>"; };
+		75DCE4A385E2C649E16EA677 /* XBXMPPConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBXMPPConnector.m; sourceTree = "<group>"; };
+		75DCE5538A18D8CE3D0F00E6 /* XMPPFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPFramework.h; sourceTree = "<group>"; };
+		75DCE73E0BE2D2A0FA4CD645 /* XMPPConnectorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPConnectorTests.m; sourceTree = "<group>"; };
+		75DCE7BDBED11F4610A7D73E /* XBError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBError.h; sourceTree = "<group>"; };
 		75DCE904070B7C93366CF1B9 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = file.yml; path = .travis.yml; sourceTree = "<group>"; };
 		75DCE9235B36DF8083D25ECA /* mogen.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mogen.sh; sourceTree = "<group>"; };
+		75DCEA9DE81E1325F821F7FB /* XBConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBConnector.h; sourceTree = "<group>"; };
 		75DCEB2BD63DFA9BB5FA1A87 /* XBAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBAccountManager.m; sourceTree = "<group>"; };
 		75DCEBA4AB61EAD736243C5F /* XBAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBAccountManager.h; sourceTree = "<group>"; };
+		75DCECC77ED2B754ED2DF249 /* AccountConnectorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountConnectorTests.m; sourceTree = "<group>"; };
 		75DCED47E6E3DC91302E4215 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
 		75DCED516A2BF3745537CB36 /* XBAuthTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBAuthTest.m; sourceTree = "<group>"; };
 		75DCED66D62ECECB1000DBB5 /* XBAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBAccount.h; sourceTree = "<group>"; };
@@ -147,6 +157,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		75DCE1699950879D0CAA34CC /* XMPPCategories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = XMPPCategories;
+			sourceTree = "<group>";
+		};
 		75DCE2E0FA80A14A3FE7ED48 /* EntitiesMachine */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +192,16 @@
 				75DCE13BBDB715407F1B73AA /* mogend.sh */,
 			);
 			path = Scripts;
+			sourceTree = "<group>";
+		};
+		75DCEC5FA353F5424C46CC00 /* Connector */ = {
+			isa = PBXGroup;
+			children = (
+				75DCE4A385E2C649E16EA677 /* XBXMPPConnector.m */,
+				75DCE48EA075773D65EA2DA2 /* XBXMPPConnector.h */,
+				75DCEA9DE81E1325F821F7FB /* XBConnector.h */,
+			);
+			path = Connector;
 			sourceTree = "<group>";
 		};
 		75DCED989299E47B17AEB78D /* Auth */ = {
@@ -208,6 +235,7 @@
 				75DCED47E6E3DC91302E4215 /* .gitignore */,
 				CC98CB24FF864D288EE32C38 /* Pods-xabberTests.xcconfig */,
 				75DCE904070B7C93366CF1B9 /* .travis.yml */,
+				75DCE5538A18D8CE3D0F00E6 /* XMPPFramework.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -249,6 +277,9 @@
 				A421DBDC199E02D000F857E2 /* Supporting Files */,
 				75DCED989299E47B17AEB78D /* Auth */,
 				75DCE52C7223F0D399B20C35 /* CoreData */,
+				75DCE1699950879D0CAA34CC /* XMPPCategories */,
+				75DCEC5FA353F5424C46CC00 /* Connector */,
+				75DCE7BDBED11F4610A7D73E /* XBError.h */,
 			);
 			path = xabber;
 			sourceTree = "<group>";
@@ -270,6 +301,8 @@
 				A421DC05199E02D000F857E2 /* Supporting Files */,
 				75DCED516A2BF3745537CB36 /* XBAuthTest.m */,
 				75DCEEA7F17D23658AF445DB /* AccountTests.m */,
+				75DCECC77ED2B754ED2DF249 /* AccountConnectorTests.m */,
+				75DCE73E0BE2D2A0FA4CD645 /* XMPPConnectorTests.m */,
 			);
 			path = xabberTests;
 			sourceTree = "<group>";
@@ -464,6 +497,7 @@
 				A421DBF5199E02D000F857E2 /* XBDetailViewController.m in Sources */,
 				75DCE5E059A0113482DA39CC /* XBAccountManager.m in Sources */,
 				75DCE93BD1E1D88C84714D60 /* XBAccount.m in Sources */,
+				75DCE48C14BBBBDA5642E52F /* XBXMPPConnector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +507,8 @@
 			files = (
 				75DCE5E9B009952060DB1290 /* XBAuthTest.m in Sources */,
 				75DCE4B321E2B9D44627B51D /* AccountTests.m in Sources */,
+				75DCE8D8DF418719894E2084 /* AccountConnectorTests.m in Sources */,
+				75DCEB83DF5C824D7CE5B3A7 /* XMPPConnectorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,6 +678,16 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/CocoaAsyncSocket\"",
+					"\"${PODS_ROOT}/Headers/CocoaLumberjack\"",
+					"\"${PODS_ROOT}/Headers/MagicalRecord\"",
+					"\"${PODS_ROOT}/Headers/OCMock\"",
+					"\"${PODS_ROOT}/Headers/SSKeychain\"",
+					"\"${PODS_ROOT}/Headers/XMPPFramework\"",
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "xabberTests/xabberTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -662,6 +708,16 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "xabber/xabber-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/CocoaAsyncSocket\"",
+					"\"${PODS_ROOT}/Headers/CocoaLumberjack\"",
+					"\"${PODS_ROOT}/Headers/MagicalRecord\"",
+					"\"${PODS_ROOT}/Headers/OCMock\"",
+					"\"${PODS_ROOT}/Headers/SSKeychain\"",
+					"\"${PODS_ROOT}/Headers/XMPPFramework\"",
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "xabberTests/xabberTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";

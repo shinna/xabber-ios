@@ -73,7 +73,7 @@
     NSArray *coreDataAccounts = [XBXMPPCoreDataAccount MR_findAll];
 
     [coreDataAccounts enumerateObjectsUsingBlock:^(XBXMPPCoreDataAccount *coreDataAccount, NSUInteger idx, BOOL *stop){
-        [self addAccount:[XBAccount accountWithCoreDataAccount:coreDataAccount]];
+        [self addAccount:[XBAccount accountWithConnector:nil coreDataAccount:coreDataAccount]];
     }];
 }
 
