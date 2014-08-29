@@ -85,7 +85,7 @@
     acc.accountID = @"account";
 
     XCTAssertTrue(acc.autoLogin);
-    XCTAssertEqual(acc.port, 5222);
+    XCTAssertEqual(acc.port, (UInt16)5222);
     XCTAssertEqual(acc.status, XBAccountStatusAvailable);
     XCTAssertTrue(acc.isNew);
     XCTAssertFalse(acc.isDeleted);
