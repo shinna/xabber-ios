@@ -25,7 +25,7 @@ typedef enum {
 @property (nonatomic, assign) BOOL autoLogin;
 @property (nonatomic, assign) XBAccountStatus status;
 @property (nonatomic, strong) NSString *host;
-@property (nonatomic, assign) int16_t port;
+@property (nonatomic, assign) UInt16 port;
 
 @property (nonatomic, readonly) BOOL isNew;
 @property (nonatomic, readonly) BOOL isDeleted;

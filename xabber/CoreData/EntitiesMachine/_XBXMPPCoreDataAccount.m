@@ -109,22 +109,22 @@ const struct XBXMPPCoreDataAccountFetchedProperties XBXMPPCoreDataAccountFetched
 
 
 
-- (int16_t)portValue {
+- (int32_t)portValue {
 	NSNumber *result = [self port];
-	return [result shortValue];
+	return [result intValue];
 }
 
-- (void)setPortValue:(int16_t)value_ {
-	[self setPort:[NSNumber numberWithShort:value_]];
+- (void)setPortValue:(int32_t)value_ {
+	[self setPort:[NSNumber numberWithInt:value_]];
 }
 
-- (int16_t)primitivePortValue {
+- (int32_t)primitivePortValue {
 	NSNumber *result = [self primitivePort];
-	return [result shortValue];
+	return [result intValue];
 }
 
-- (void)setPrimitivePortValue:(int16_t)value_ {
-	[self setPrimitivePort:[NSNumber numberWithShort:value_]];
+- (void)setPrimitivePortValue:(int32_t)value_ {
+	[self setPrimitivePort:[NSNumber numberWithInt:value_]];
 }
 
 

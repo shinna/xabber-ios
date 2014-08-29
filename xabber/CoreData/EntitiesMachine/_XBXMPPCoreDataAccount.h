@@ -76,9 +76,9 @@ extern const struct XBXMPPCoreDataAccountFetchedProperties {
 
 
 
-@property int16_t portValue;
-- (int16_t)portValue;
-- (void)setPortValue:(int16_t)value_;
+@property int32_t portValue;
+- (int32_t)portValue;
+- (void)setPortValue:(int32_t)value_;
 
 //- (BOOL)validatePort:(id*)value_ error:(NSError**)error_;
 
@@ -134,8 +134,8 @@ extern const struct XBXMPPCoreDataAccountFetchedProperties {
 - (NSNumber*)primitivePort;
 - (void)setPrimitivePort:(NSNumber*)value;
 
-- (int16_t)primitivePortValue;
-- (void)setPrimitivePortValue:(int16_t)value_;
+- (int32_t)primitivePortValue;
+- (void)setPrimitivePortValue:(int32_t)value_;
 
 
 

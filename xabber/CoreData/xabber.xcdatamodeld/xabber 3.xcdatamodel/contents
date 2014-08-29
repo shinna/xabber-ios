@@ -8,7 +8,7 @@
         </attribute>
         <attribute name="autoLogin" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="host" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="port" optional="YES" attributeType="Integer 16" defaultValueString="5222" syncable="YES"/>
+        <attribute name="port" optional="YES" attributeType="Integer 32" minValueString="1" maxValueString="65536" defaultValueString="5222" syncable="YES"/>
         <attribute name="status" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <userInfo>
             <entry key="relatedByAttribute" value="accountID"/>
