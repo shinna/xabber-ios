@@ -16,6 +16,7 @@
 		75DCE93BD1E1D88C84714D60 /* XBAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE2E5958345301F5FB5B6 /* XBAccount.m */; };
 		75DCE9A2CACC2E1827D6CBE6 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 75DCE904070B7C93366CF1B9 /* .travis.yml */; };
 		75DCE9D4F122C8E3BB07125F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 75DCED47E6E3DC91302E4215 /* .gitignore */; };
+		75DCE9DB4183ABEB2BD980FD /* XMPPPresence+XBEquality.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE1AE3570B5B13C2B700D /* XMPPPresence+XBEquality.m */; };
 		75DCEB83DF5C824D7CE5B3A7 /* XMPPConnectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE73E0BE2D2A0FA4CD645 /* XMPPConnectorTests.m */; };
 		75DCEE627A4AEA9076A55EE8 /* mogend.sh in Resources */ = {isa = PBXBuildFile; fileRef = 75DCE13BBDB715407F1B73AA /* mogend.sh */; };
 		A41DB9F119A2168A00B3AB93 /* xabber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A41DB9EF19A2168A00B3AB93 /* xabber.xcdatamodeld */; };
@@ -77,6 +78,7 @@
 
 /* Begin PBXFileReference section */
 		75DCE13BBDB715407F1B73AA /* mogend.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mogend.sh; sourceTree = "<group>"; };
+		75DCE1AE3570B5B13C2B700D /* XMPPPresence+XBEquality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XMPPPresence+XBEquality.m"; sourceTree = "<group>"; };
 		75DCE2E5958345301F5FB5B6 /* XBAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBAccount.m; sourceTree = "<group>"; };
 		75DCE48EA075773D65EA2DA2 /* XBXMPPConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBXMPPConnector.h; sourceTree = "<group>"; };
 		75DCE4A385E2C649E16EA677 /* XBXMPPConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBXMPPConnector.m; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 		75DCED47E6E3DC91302E4215 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
 		75DCED516A2BF3745537CB36 /* XBAuthTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBAuthTest.m; sourceTree = "<group>"; };
 		75DCED66D62ECECB1000DBB5 /* XBAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBAccount.h; sourceTree = "<group>"; };
+		75DCED6B494282AAA76811B9 /* XMPPPresence+XBEquality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XMPPPresence+XBEquality.h"; sourceTree = "<group>"; };
 		75DCEEA7F17D23658AF445DB /* AccountTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountTests.m; sourceTree = "<group>"; };
 		8F8CDA0B349E4FB68FC4D371 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		944A0A7921684A89A96C5394 /* libPods-xabberTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-xabberTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +195,15 @@
 				75DCE13BBDB715407F1B73AA /* mogend.sh */,
 			);
 			path = Scripts;
+			sourceTree = "<group>";
+		};
+		75DCEBA5202F56CDDDA0E0E9 /* Test Categories */ = {
+			isa = PBXGroup;
+			children = (
+				75DCE1AE3570B5B13C2B700D /* XMPPPresence+XBEquality.m */,
+				75DCED6B494282AAA76811B9 /* XMPPPresence+XBEquality.h */,
+			);
+			path = "Test Categories";
 			sourceTree = "<group>";
 		};
 		75DCEC5FA353F5424C46CC00 /* Connector */ = {
@@ -303,6 +315,7 @@
 				75DCEEA7F17D23658AF445DB /* AccountTests.m */,
 				75DCECC77ED2B754ED2DF249 /* AccountConnectorTests.m */,
 				75DCE73E0BE2D2A0FA4CD645 /* XMPPConnectorTests.m */,
+				75DCEBA5202F56CDDDA0E0E9 /* Test Categories */,
 			);
 			path = xabberTests;
 			sourceTree = "<group>";
@@ -498,6 +511,7 @@
 				75DCE5E059A0113482DA39CC /* XBAccountManager.m in Sources */,
 				75DCE93BD1E1D88C84714D60 /* XBAccount.m in Sources */,
 				75DCE48C14BBBBDA5642E52F /* XBXMPPConnector.m in Sources */,
+				75DCE9DB4183ABEB2BD980FD /* XMPPPresence+XBEquality.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

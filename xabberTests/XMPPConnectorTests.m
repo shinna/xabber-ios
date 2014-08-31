@@ -12,6 +12,7 @@
 #import "OCMock.h"
 #import "XMPPModule.h"
 #import "XBError.h"
+#import "XMPPPresence+XBEquality.h"
 
 @interface XMPPConnectorTests : XCTestCase {
     id mockXMPPStream;
@@ -125,6 +126,60 @@
     [mockConnector xmppStreamDidAuthenticate:mockXMPPStream];
 
     XCTAssertTrue([mockConnector isLoggedIn]);
+}
+
+- (void)testSetStatusAvailable {
+    XMPPPresence *presence = [XMPPPresence presence];
+
+    OCMStub([mockXMPPStream sendElement:[OCMArg any]]);
+
+    [mockConnector setNewStatus:XBAccountStatusAvailable];
+
+    OCMVerify([mockXMPPStream sendElement:presence]);
+}
+
+- (void)testSetStatusChat {
+    XMPPPresence *presence = [XMPPPresence presence];
+    [presence addChild:[DDXMLElement elementWithName:@"show" stringValue:@"chat"]];
+
+    OCMStub([mockXMPPStream sendElement:[OCMArg any]]);
+
+    [mockConnector setNewStatus:XBAccountStatusChat];
+
+    OCMVerify([mockXMPPStream sendElement:presence]);
+}
+
+- (void)testSetStatusAway {
+    XMPPPresence *presence = [XMPPPresence presence];
+    [presence addChild:[DDXMLElement elementWithName:@"show" stringValue:@"away"]];
+
+    OCMStub([mockXMPPStream sendElement:[OCMArg any]]);
+
+    [mockConnector setNewStatus:XBAccountStatusAway];
+
+    OCMVerify([mockXMPPStream sendElement:presence]);
+}
+
+- (void)testSetStatusXA {
+    XMPPPresence *presence = [XMPPPresence presence];
+    [presence addChild:[DDXMLElement elementWithName:@"show" stringValue:@"xa"]];
+
+    OCMStub([mockXMPPStream sendElement:[OCMArg any]]);
+
+    [mockConnector setNewStatus:XBAccountStatusXA];
+
+    OCMVerify([mockXMPPStream sendElement:presence]);
+}
+
+- (void)testSetStatusDnD {
+    XMPPPresence *presence = [XMPPPresence presence];
+    [presence addChild:[DDXMLElement elementWithName:@"show" stringValue:@"dnd"]];
+
+    OCMStub([mockXMPPStream sendElement:[OCMArg any]]);
+
+    [mockConnector setNewStatus:XBAccountStatusDnD];
+
+    OCMVerify([mockXMPPStream sendElement:presence]);
 }
 
 @end

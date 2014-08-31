@@ -100,6 +100,12 @@
 - (void)setNewStatus:(XBAccountStatus)status {
     XMPPPresence *presence = [XMPPPresence presence];
     NSString *domain = [self.xmppStream.myJID domain];
+    NSString *showString = [self showByStatus:status];
+
+    if (showString) {
+        DDXMLElement *show = [DDXMLElement elementWithName:@"show" stringValue:showString];
+        [presence addChild:show];
+    }
 
     if([domain isEqualToString:@"gmail.com"]
             || [domain isEqualToString:@"gtalk.com"]
@@ -110,6 +116,23 @@
     }
 
     [self.xmppStream sendElement:presence];
+}
+
+- (NSString *)showByStatus:(XBAccountStatus)status {
+    switch (status) {
+        case XBAccountStatusChat:
+            return @"chat";
+        case XBAccountStatusAway:
+            return @"away";
+        case XBAccountStatusXA:
+            return @"xa";
+        case XBAccountStatusDnD:
+            return @"dnd";
+        default:
+            return nil;
+    }
+
+    return nil;
 }
 
 #pragma mark Setup/teardown stream
