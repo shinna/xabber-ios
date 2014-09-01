@@ -163,13 +163,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		75DCE1699950879D0CAA34CC /* XMPPCategories */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = XMPPCategories;
-			sourceTree = "<group>";
-		};
 		75DCE2E0FA80A14A3FE7ED48 /* EntitiesMachine */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,7 +287,6 @@
 				A421DBDC199E02D000F857E2 /* Supporting Files */,
 				75DCED989299E47B17AEB78D /* Auth */,
 				75DCE52C7223F0D399B20C35 /* CoreData */,
-				75DCE1699950879D0CAA34CC /* XMPPCategories */,
 				75DCEC5FA353F5424C46CC00 /* Connector */,
 				75DCE7BDBED11F4610A7D73E /* XBError.h */,
 			);
