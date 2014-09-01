@@ -118,23 +118,6 @@
     [self.xmppStream sendElement:presence];
 }
 
-- (NSString *)showByStatus:(XBAccountStatus)status {
-    switch (status) {
-        case XBAccountStatusChat:
-            return @"chat";
-        case XBAccountStatusAway:
-            return @"away";
-        case XBAccountStatusXA:
-            return @"xa";
-        case XBAccountStatusDnD:
-            return @"dnd";
-        default:
-            return nil;
-    }
-
-    return nil;
-}
-
 #pragma mark Setup/teardown stream
 
 - (void)setupStream {
@@ -235,6 +218,23 @@
 - (void)goOffline {
     XMPPPresence *presence = [XMPPPresence presenceWithType:@"unavailable"];
     [self.xmppStream sendElement:presence];
+}
+
+- (NSString *)showByStatus:(XBAccountStatus)status {
+    switch (status) {
+        case XBAccountStatusChat:
+            return @"chat";
+        case XBAccountStatusAway:
+            return @"away";
+        case XBAccountStatusXA:
+            return @"xa";
+        case XBAccountStatusDnD:
+            return @"dnd";
+        default:
+            return nil;
+    }
+
+    return nil;
 }
 
 #pragma mark XMPPStream delegate
